@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   pageTitle="Reverse Text"
+			   minWidth="955" minHeight="600" backgroundColor="#A5A5C6"
+			   creationComplete="updateButtons()">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->		
+		<s:HTTPService id="testFileService" 
+					   url="{chooseFileComboBox.selectedItem.data}"
+					   result="testFileService_resultHandler(event)"
+					   fault="testFileService_faultHandler(event)"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		
+		<![CDATA[
+			
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.controls.Alert;
+			
+			private function displayTextButton_clickHandler(event:Event):void {
+				testFileService.send();
+			}
+			
+			private function clearTextButton_clickHandler(event:Event):void {
+				displayTextArea.text = "";
+				updateButtons();
+			}
+			
+			private function reverseTextButton_clickHandler(event:Event):void {
+				
+				var displayTextArray:Array;
+				var displayTextArrayOrigLength:int;
+				var displayTextReversed_str:String;
+				
+				displayTextArray = displayTextArea.text.split("");
+				displayTextArrayOrigLength = displayTextArray.length;
+				displayTextReversed_str = "";
+
+				for (var i:int=0; i < displayTextArrayOrigLength; i++) {
+					displayTextReversed_str += displayTextArray.pop();
+				}
+				
+				displayTextArea.text = displayTextReversed_str;
+			}
+			
+			private function testFileService_resultHandler(event:ResultEvent):void {
+				displayTextArea.text = event.result.toString();
+				updateButtons();
+			}
+			
+			private function testFileService_faultHandler(event:FaultEvent):void {
+				Alert.show(event.fault.faultString, "Error");
+			}
+			
+			private function updateButtons():void {
+				if (displayTextArea.text == "") {
+					clearButton.enabled = false;
+					reverseTextButton.enabled = false;
+				} else {
+					clearButton.enabled = true;
+					reverseTextButton.enabled = true;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Form width="915" height="560" backgroundColor="#CCCCCC" contentBackgroundColor="#FFFFFF"
+			horizontalCenter="0" verticalCenter="0">
+		<s:FormHeading width="608" label="Chrome River Flex Demo" textAlign="center"/>
+		<s:FormItem width="365" label="Choose File:">
+			<mx:ComboBox id="chooseFileComboBox" width="182"> 
+				<mx:ArrayCollection>
+					<fx:Object label="Test File 1" data="https://staging.chromeriver.com/eval/TestFile1.txt"/>
+					<fx:Object label="Test File 2" data="https://staging.chromeriver.com/eval/TestFile2.txt"/>
+				</mx:ArrayCollection>
+			</mx:ComboBox>
+			<s:HGroup x="0" y="29" width="263" height="22" horizontalAlign="center">
+				<s:Button id="displayButton" label="Display Text" click="displayTextButton_clickHandler(event)"/>
+				<s:Button id="clearButton"  label="Clear Text"  click="clearTextButton_clickHandler(event)"/>
+				<s:Button id="reverseTextButton"  label="Reverse Text" click="reverseTextButton_clickHandler(event)"/>
+			</s:HGroup>
+		</s:FormItem>
+		<s:FormItem width="889" height="415" label="Text">
+			<s:TextArea id="displayTextArea" width="780" height="390"/>
+		</s:FormItem>
+	</s:Form>
+	
+</s:Application>
