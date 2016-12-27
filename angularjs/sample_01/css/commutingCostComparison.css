@@ -38,13 +38,13 @@
 #commutingCostComparison main section.non-turbo
 {
 	background-color: #de6615;
-	background-image: url(images/non_turbo.png);
+	background-image: url(../images/non_turbo.png);
 }
 
 #commutingCostComparison main section.turbo
 {
 	background-color: #efc20f;
-	background-image: url(images/turbo.png);
+	background-image: url(../images/turbo.png);
 }
 
 #commutingCostComparison main section > div
