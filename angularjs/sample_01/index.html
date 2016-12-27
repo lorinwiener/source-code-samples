@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html ng-app="commutingCostComparisonApp">
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script type="text/javascript" src="assets/angular.min.js"></script>
+		<script type="text/javascript" src="assets/commutingCostComparison.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="assets/commutingCostComparison.css">
+
+		<title>Commuting Cost Comparison</title>
+
+	</head>
+
+	<body>
+
+		<center>
+
+			<br>
+			<br>
+
+			<div id="commutingCostComparison" ng-controller="CommutingCostComparisonController">
+
+				<main>
+
+					<section class="non-turbo">
+						<div>
+							<h4>2.0L 4 Cyl</h4>
+							<p>{{non_turbo_fuel_efficiency}}</p>
+							<p>{{non_turbo_fuel_cost | currency:fixed : 0}}</p>
+						</div>
+					</section>
+
+					<section class="turbo">
+						<div>
+							<h4>2.0L 4 Cyl (Turbo)</h4>
+							<p>{{turbo_fuel_efficiency}}</p>
+							<p>{{turbo_fuel_cost | currency:fixed : 0}}</p>
+						</div>
+					</section>
+
+				</main>
+
+				<form>
+
+					<div class="avg_fuel_cost">
+						<h4>Avg. Fuel Cost</h4>
+						$<input type="text" ng-change="calculate()" ng-model="avg_fuel_cost"> a gallon
+					</div>
+					
+					<div class="miles_driven">
+						<h4>Miles Driven</h4>
+						<input type="number"  step="500" ng-change="calculate()" ng-model="miles_per_year" min=500> miles a year
+					</div>
+
+				</form>
+
+			</div>
+
+		</center>
+
+	</body>
+
+</html>

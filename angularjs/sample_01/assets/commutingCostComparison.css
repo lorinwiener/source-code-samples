@@ -1,0 +1,225 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700|Open+Sans+Condensed:700);
+
+#commutingCostComparison
+{
+	margin: 0; 
+	padding: 0;
+	font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	line-height: 24px;
+	max-width: 500px;
+}
+
+#commutingCostComparison main
+{
+	background-color: #445;
+}
+
+#commutingCostComparison main section
+{
+	width: 50%;
+	float: left;
+	text-align: center;
+	padding-top: 115px;
+	color: #fff;
+	background-repeat: no-repeat;
+	background-position: center 5px;
+	background-size: 193px 100px;
+}
+
+#commutingCostComparison main::after
+{
+	content:'';
+	display: block;
+	clear: both;
+}
+
+#commutingCostComparison main section.non-turbo
+{
+	background-color: #de6615;
+	background-image: url(images/non_turbo.png);
+}
+
+#commutingCostComparison main section.turbo
+{
+	background-color: #efc20f;
+	background-image: url(images/turbo.png);
+}
+
+#commutingCostComparison main section > div
+{
+	padding: 5px 0;
+	background-color: rgba(0,0,0,.15);
+}
+
+#commutingCostComparison main h4
+{
+	font-family: 'Open Sans Condensed', san-serif;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+	margin: 0 0 5px 0;
+	text-transform: uppercase;
+}
+
+#commutingCostComparison main p
+{
+	margin: 0;
+	font-size: 1.0em;
+	font-weight: 700;
+}
+
+#commutingCostComparison main p + p
+{
+	font-size: 1em;
+	font-weight: 300;
+}
+
+#commutingCostComparison main p::before
+{
+	content:'Fuel Economy - ';
+}
+
+#commutingCostComparison main p::after
+{
+	content:' MPG';
+}
+
+#commutingCostComparison main p + p::before
+{
+	content:'Fuel Cost ';
+}
+
+#commutingCostComparison main p + p::after
+{
+	content:'per year';
+	color: rgba(255,255,255,.5);
+	padding-left: 4px;
+}
+
+#commutingCostComparison form {
+	background-color: #000;
+	margin: 0;
+	padding: 10px 0px;
+}
+
+#commutingCostComparison form br
+{
+	display: none;
+}
+
+#commutingCostComparison form > div
+{
+	color: #fff;
+	width: 50%;
+	float: left;
+	text-align: center;
+	padding: 0px 0 5px 0;
+}
+
+#commutingCostComparison form::after
+{
+	content:'';
+	display: block;
+	clear: both;
+}
+
+#commutingCostComparison form h4
+{
+	color: #aaa;
+	margin: 0 0 6px 0;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+#commutingCostComparison form p
+{
+	color: #888;
+	margin: 0 0 6px 0;
+	font-size: .9em;
+}
+
+#commutingCostComparison form input[type=text]
+{
+	width: 35px;
+	text-align: left;
+	font-size: 1em;
+	
+}
+
+#commutingCostComparison form input[type=number]
+{
+	width: 58px;
+	text-align: left;
+	font-size: 1em;
+	
+}
+
+@media screen and (max-width:500px)
+{
+
+	#commutingCostComparison {
+		font-size: 15px;
+	}
+	
+	#commutingCostComparison main section
+	{
+		background-size: 130px 71px;
+		padding-top: 80px;
+	}
+
+	#commutingCostComparison main h4
+	{
+		margin: 0;
+		font-size: .75em;
+		letter-spacing: 0;
+	}
+
+	#commutingCostComparison main p
+	{
+		font-size: 1.1em;
+	}
+
+	#commutingCostComparison main p + p
+	{
+		font-size: 1em;
+	}
+
+	#commutingCostComparison main p + p::after
+	{
+		display: block;
+		margin-top: -10px;
+		color: #fff;
+	}
+
+	#commutingCostComparison form h4
+	{
+		font-size: 1.1em;
+		margin: 0;
+	}
+
+	#commutingCostComparison form p
+	{
+		font-size: .8em;
+		line-height: 14px;
+	}
+
+	#commutingCostComparison form br
+	{
+		display: inline;
+	}
+
+	#commutingCostComparison form input[type=text]
+	{
+		width: 30px;
+		text-align: left;
+		font-size: .8em;
+	}
+
+	#commutingCostComparison form input[type=number]
+	{
+		width: 50px;
+		font-size: .8em;
+	}
+
+}
