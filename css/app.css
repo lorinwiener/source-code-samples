@@ -1,0 +1,616 @@
+/*----------------------------- Generic stuff ------------------------------*/
+
+/* Add Clearview font to debug easier on Chrome. This is not needed in STB*/
+@font-face {font-family: dtv;
+src: url("../assets/fonts/directm_.ttf") format(truetype); }
+
+/*Everything uses clairview font*/
+body{
+	font-family: 'Direct Gothic', dtv;
+	color: #fff;
+}
+
+p{
+	margin:0;
+	padding:0;
+}
+
+h1{
+	font-weight: normal;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Clock */
+#dtvfullscreenwatch {
+	position: fixed;
+	left: 1666px;
+	top: 50px;
+}
+.dtv-watch-time {
+	display: block;
+    font-size: 38px;
+    color: #e6e6e6;
+    position: relative;
+    top: 7px;
+}
+
+.dtv-watch-date {
+	display: block;
+    font-size: 28px;
+    position: relative;
+    top: 2px;
+    color: #a7a7a7;
+}
+
+/* Scrollbar Stuff*/
+.snipe{
+	display:none;
+	/*position:absolute;
+	left:116px;
+	top:801px;
+	background: url('../assets/images/snipe.png') left center no-repeat;
+	width:313px;
+	height:198px;*/
+}
+
+.scrollbar {
+	margin:0;padding:0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 648px;
+	-webkit-border-image: url("../assets/images/scrollbar-transparent.png") 8 stretch;
+	border-width: 9px;
+}
+.thumb {
+	margin:0;padding:0;
+	position: absolute;
+	top: -7px;
+	left: -8px;
+	width: 0;
+	-webkit-border-image: url("../assets/images/scroll-slider-idle.png") 9 stretch;
+	border-width: 9px;
+	-webkit-transition: all 100ms linear!important;
+}
+.thumb.highlight {
+	-webkit-border-image: url("../assets/images/scroll-slider-active.png") 9 stretch;
+}
+
+.pig-background {
+    position: absolute;
+    background-color: transparent;
+    border: 10px solid rgba(0,0,0,0.5);
+    width: 416px;
+    height: 268px;
+    top: 50px;
+    left: 100px;
+}
+
+
+/*----------------------------- Main Menu ------------------------------*/
+
+.weather-holder {
+    position: fixed;
+    top: 19px;
+    left: 123px
+}
+
+.weather-icon{
+    position:absolute;
+    top:0;
+    left:0;
+    width:144px;
+    height:130px;
+}
+
+.weather-temp{
+    position:absolute;
+    top: 31px;
+    left: 131px;
+    font-size:38px;
+    line-height:38px;
+    height:38px;
+    width:361px;
+    color:#cdcdcd;
+}
+
+.weather-city {
+    position: absolute;
+    top: 69px;
+    left: 131px;
+    font-size: 28px;
+    line-height: 28px;
+    height: 28px;
+    width: 361px;
+    text-overflow: clip;
+    color: #ccc;
+}
+
+.welcome{
+    position:fixed;
+    display:table;
+    width:616px;
+    top:40px;
+    left:632px;
+    height:100px;
+    margin:0;
+    font-size:38px;
+    line-height:45.6px;
+    text-align:center;
+}
+
+.welcome-left {
+    text-align: left;
+    left: 123px;
+}
+
+.welcome.bottom {
+    top: 975px;
+    font-size: 27px;
+}
+
+.exit{
+	position:absolute;
+	left:143px;
+	bottom:40px;
+    color:white;
+	background: url('../assets/images/button_red_clear.png') left center no-repeat;
+	font-size:27px;
+	text-indent:35px;
+}
+
+.tv-menu{
+	position:absolute;
+	right:143px;
+	bottom:40px;
+    color:white;
+	font-size:27px;
+}
+
+.tv-menu span {
+	display: inline-block;
+	position: relative;
+	top: 9px;
+	height: 30px;
+	width: 86px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-image: url('../assets/images/mm_icon_sprite_lg.png');
+	background-repeat: no-repeat;
+	background-position: 0 -516px;
+}
+
+.menu {
+    position: absolute;
+}
+
+.logo-holder {
+    position: absolute;
+    left: 1316px;
+    top: 49px;
+    height: 82px;
+    width: auto;
+    background-color: rgba(26,51,77,0.5);
+}
+
+.hotel-logo {
+    position: fixed;
+    left: 1344px;
+    top: 54px;
+    width: 181px;
+    height: 72px;
+}
+
+.logos-divider-left {
+    position: fixed;
+    left: 1548px;
+    top: 54px;
+    width: 2px;
+    height: 72px;
+		background-image: url('../assets/images/divider.png');
+		background-repeat: no-repeat;
+    display: inline;
+}
+
+.att-logo {
+    position: fixed;
+    left: 1564px;
+    top: 65px;
+    width: 65px;
+    height: 58px;
+		background-image: url('../assets/images/att_logo.png');
+		background-repeat: no-repeat;
+    display: inline;
+}
+
+.logos-divider-right {
+    position: fixed;
+    left: 1643px;
+    top: 54px;
+    width: 2px;
+    height: 72px;
+		background-image: url('../assets/images/divider.png');
+		background-repeat: no-repeat;
+}
+
+#mm-left-menu{
+    left: 135px;
+}
+
+#mm-right-menu{
+    left: 1458px;
+}
+
+#mm-guest {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#mm-room-number {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.main-menuitem {
+    /* height is set in the template */
+    width:331px;
+    font-size: 28px;
+    line-height: 30px;
+    background-color: #0B1319;
+    background-image: none;
+    /* For Vertically aligning multiline text*/
+    display: block;
+    position: relative;
+    text-overflow: clip;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* All inner divs need vertically aligned text  */
+.main-menuitem.active {
+    color: white;
+    background-image: url('../assets/images/selection_active.png');
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    background-color: #269EF3;
+}
+
+/* Border radiusing */
+.left-menu .main-menuitem:first-child {
+    border-radius: 3px 0 0 0;
+}
+
+.left-menu .main-menuitem:last-child {
+    border-radius: 0 0 0 3px;
+}
+
+.right-menu .main-menuitem:first-child {
+    border-radius: 0 3px 0 0;
+}
+
+.right-menu .main-menuitem:last-child {
+    border-radius: 0 0 3px 0;
+}
+
+.icon {
+    /* width, height, margin-left, margin-top,*/
+    /* background-position are set in the template */
+    display: block;
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+}
+
+.active .icon {
+    background-position: 0 0;
+}
+
+.label {
+    display: table;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    color: #868686;
+}
+
+.active .label {
+    color: #FFFFFF;
+}
+
+.label-holder {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.label-text {
+    min-height: 30px;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Shadows */
+.menu-shadow {
+    position: absolute;
+    top: 900px;
+    width: 450px;
+    height: 63px;
+    background: url("../assets/images/menu_shadow.png") center no-repeat transparent;
+}
+
+.menu-shadow.left {
+    left: 75px;
+}
+
+.menu-shadow.right {
+    left: 1398px;
+}
+
+/*----------------------------- Hotel Info ------------------------------*/
+
+.fullscreen-menu{
+	/*TODO: find the real dimensions in the styleguide*/
+	position:absolute;
+	left:100px;
+	top:367px;
+	width:425px;
+	height:526px;
+	color:white;
+	background-color: transparent;
+        border-width: 5px;
+        -webkit-border-image: url("../assets/images/selection_box_transparent.png") 5 stretch;
+}
+
+.fullscreen-menu.dimmed{
+	color: #404040;
+}
+
+.fullscreen-menu-bumper {
+    position: absolute;
+    left: 99px;
+    top: 903px;
+    width: 430px;
+    height: 6px;
+    -webkit-border-image: url("../assets/images/selection_menu_bumper.png") 5 4 stretch;
+}
+
+.fullscreen-panel{
+	/*TODO: find the real dimensions in the styleguide*/
+	position: absolute;
+	left: 580px;
+	top: 117px;
+        /* compensates for the width of the border images from 1200px */
+	width:1159px;
+	height: auto;
+        bottom: 0;
+	background-color: transparent;
+        -webkit-border-image: url("../assets/images/content_box_black.png") 34 stretch;
+        border-width: 34px 34px 0;
+}
+
+.hotel-info-menuitem.selected{
+	background-color: black;
+	color:white;
+}
+
+.hotel-info-menuitem.active{
+    /* the border image expands the dimensions by 3px on each side vs inactive state */
+    -webkit-border-image: url("../assets/images/selection_button_active.png") 7 4 stretch;
+    width: 423px;
+    height: 63px;
+    line-height:63px;
+    text-indent: 19px;
+    color: white;
+}
+
+.hotel-info-menuitem{
+	width:429px;
+	height:69px;
+	line-height:69px;
+	font-size:36px;
+	text-indent: 22px;
+        margin-left: -2px;
+}
+
+.hotel-info-menuitem:first-child {
+    margin-top: -2px;
+}
+
+.scrollbar-container{
+	position:absolute;
+	top: 50px;
+        left: 28px;
+        right: 28px;
+	width: auto;
+	height:668px;
+	padding-left:45px;
+	overflow:hidden;
+	font-size:27px;
+	line-height:32px;
+}
+
+.scrollbar-content{
+	-webkit-transition: all 100ms linear!important;
+}
+
+.title-type {
+  position: absolute;
+  left: 603px;
+  top: 18px;
+  font-size: 55px;
+}
+
+/* Info Screen Panel*/
+.info-banner{
+	width:960px;
+	height:275px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:30px;
+}
+
+.info-details{
+	text-align: center;
+	margin-bottom:30px;
+}
+
+.info-features{
+	color:#cccccc;
+	font-weight:bold;
+}
+
+.features-list{
+	margin-bottom:15px;
+}
+
+.feature-item{
+	padding-left:25px;
+	margin-bottom:10px;
+}
+
+.info-keyvalue{
+	margin-bottom:15px;
+}
+
+.info-key{
+	color: #cccccc;
+	font-weight: bold;
+}
+
+.info-value{
+	text-indent:15px;
+}
+
+.info-done-button {
+    position: absolute;
+    top: 796px;
+    right: 0;
+    width: 411px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 27px;
+    text-indent: 1em;
+    -webkit-border-image: url("../assets/images/selection_button_idle.png") 5 4 stretch;
+}
+
+.info-done-button.active {
+    -webkit-border-image: url("../assets/images/selection_button_active.png") 5 4 stretch;
+}
+
+/*----------------------------- Room Number Entry ------------------------------*/
+#rne-keyboard-container {
+    /*background-image: url("../assets/images/black_bg.png");*/
+    background-color: black;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 121px;
+    bottom: 0px;
+    width: 1650px;
+    height: 734px;
+}
+
+#rne-keyboard {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 778px;
+    height: 422px;
+}
+
+#rne-instrucs {
+    position: absolute;
+    left: 100px;
+    top: 30px;
+}
+
+.keyboard-highlighter {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+    /*border: 5px solid #9A1C1F;*/
+    background-image: url("../assets/images/keyboard_highlight.png");
+    background-position: 0 -4px;
+}
+
+.text-field {
+    position: absolute;
+    left: 25px;
+    top: 28px;
+    width: 725px;
+    height: 61px;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    line-height: 61px;
+    background-color: black;
+}
+
+#rne-ok-cancel-menu {
+    position: absolute;
+    right: 0px;
+    bottom: 155px;
+}
+
+.rne-ok-button {
+    background-image: url("../assets/images/buttons_ok_idle.png");
+    width: 419px;
+    height: 62px;
+    margin-bottom: 5px;
+}
+
+.rne-ok-button.active{
+    background-image: url("../assets/images/buttons_ok_highlight.png");
+
+}
+
+.rne-cancel-button {
+    background-image: url("../assets/images/buttons_cancel_idle.png");
+    width: 419px;
+    height: 62px;
+}
+
+.rne-cancel-button.active {
+    background-image: url("../assets/images/buttons_cancel_highlight.png");
+}
+
+/* APPS */
+
+.app .fullscreen-panel {
+    top: 321px;
+    left: 75px;
+    width: 1700px;
+}
+
+.app .scrollbar-container {
+    height: 432px;
+}
+
+.app .scrollbar {
+    height: 412px;
+}
+
+.app .info-done-button {
+    top: 592px;
+}
+
+.app .title-type {
+    left: 570px;
+}
+
+.app-summary {
+    position: absolute;
+    left: 570px;
+    top: 130px;
+    width: 750px;
+    height: 210px;
+    font-size: 36px;
+    line-height: 115%;
+}
+
