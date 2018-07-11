@@ -1,2 +1,2 @@
 # source-code-samples
-Source code snippets from projects and languagesI have worked on in the past.
+Source code snippets from projects and languages I have worked on in the past.
