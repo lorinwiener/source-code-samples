@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>TV Apps Dock</title>
+        <script>
+            var customError = null;
+            window.onerror = function(param1, param2, param3){
+                window.console.log("***** Error occurred *****");
+                window.console.log(param1);
+                window.console.log(param2);
+                window.console.log(param3);
+                window.console.log("***** End Error *****");
+
+                // If an app 404 is encountered and it isn't the result of a bad Omniture connection,
+                // Fire the loadFailure function or the customError (if available).
+                if((!!~param1.indexOf(" Failed to read the 'contentDocument' property from 'HTMLIFrameElement'") || !!~param1.indexOf("Timeout was reached") || !!~param1.indexOf("Couldn't connect to server") || !!~param1.indexOf("Problem with the local SSL certificate")) && !~param2.indexOf('metrics') && loadFail){
+                    if(customError){
+                        window.console.log('~Launching customError function.');
+                        window.setTimeout(customError,800);
+                    }else{
+                        window.console.log('~Launching default loadFail function.');
+                        window.setTimeout(loadFail,800);
+                    }
+                }
+                return true;
+            };
+            if(navigator.setResolution) navigator.setResolution(1920, 1080);
+        </script>
+        <link rel="stylesheet" href="css/dock.css" type="text/css">
+    </head>
+    <body>
+        <div id="app"></div>
+        <iframe id="app-embed" class="hidden"></iframe>
+        <script src="js/s_code.js"></script>
+        <script>
+            // Load app.js only after all data files have been downloaded
+            function deferAppLoad() {
+                var s = document.createElement('script');
+                s.src = 'js/app.js';
+                document.body.appendChild(s);
+                window.removeEventListener("load", deferAppLoad, false);
+            }
+            window.addEventListener("load", deferAppLoad, false);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+html {
+  body {
+    background-color: #333;
+    font-family: @globalfont;
+    overflow: hidden;
+
+    .application {
+      width: 100%;
+      height: 5000px;
+      background-color: rgba(0, 0, 0, .65);
+      background-attachment: fixed;
+
+      &.OFF {
+        background-color: rgba(0, 0, 0, 1);
+      }
+    }
+
+    .icons-map {
+      background: transparent url('/app/images/icons_map.png') no-repeat;
+    }
+	
+    .drop-shadow {
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      background: #000;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s;
+
+      &.menu-active {
+        opacity: @globalDropShadowOpacity;
+        z-index: 1;
+        bottom: 0;
+      }
+	  
+      &.overlay-active {
+        opacity: @globalDropShadowOpacity;
+        z-index: 100;
+        bottom: 0;
+      }
+
+      &.playlist-active {
+        opacity: @globalDropShadowOpacity;
+        z-index:1;
+      }
+    }
+
+    // Shareable items styles
+    .list-meta-data {
+      height: 40px;
+      font-size: 28px;
+      color: #f0f0f0;
+      margin-bottom: 30px;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          float: left;
+          list-style: none;
+          border-right: 2px solid #ccc;
+          padding: 0 15px 0 15px;
+          line-height: 40px;
+
+          &:first-child {
+            padding: 0 15px 0 0;
+          }
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+    }
+    .title {
+      color: white;
+      font-family: ATT_Sans_Regular;
+      font-size: 40px;
+    }
+  }
+}

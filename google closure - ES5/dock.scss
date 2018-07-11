@@ -1,0 +1,146 @@
+$text: #e6e6e6; //off-white for default text
+$dock-bg: rgba(0,0,0,0.7);
+$highlight: #01A7FD;
+$dimmed: hsla(0,0%,0%,0.9);
+
+@function im($img){
+  @return url("../images/#{$img}");
+}
+@mixin dock-transition{
+  -webkit-transition: all .45s ease-in-out;
+}
+@mixin abs{
+  position: absolute;
+}
+@mixin spacing($mar:0,$pad:0){
+  margin: $mar;
+  padding: $pad;
+}
+@mixin ofh{
+  overflow: hidden;
+}
+@mixin pseudo($w,$h,$bg,$c:''){
+  @include abs;
+  content: $c;
+  width: $w;
+  height: $h;
+  background: $bg no-repeat;
+}
+@mixin sprite($w,$h,$x:0,$y:0){
+  @include pseudo($w,$h,im('sprite.png'));
+  @include ofh;
+  background-position: $x $y;
+}
+@mixin arrows($x,$y){
+  @include spacing;
+  @include sprite(24px,12px,$x,$y);
+  left:188px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: $text;
+  font-size: 26px;
+  overflow:hidden;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+#dock{
+  width: 400px;
+  height:100%;
+  position:absolute;
+  top:0;
+  right:80px;
+  background: im('dock_header.png') center -5px no-repeat $dock-bg;
+  padding-top: 175px;
+}
+
+#ftux {
+  width:621px;
+  height:617px;
+  position: absolute;
+  top:128px;
+  right: 128px;
+}
+
+#version { 
+  position: absolute;
+  top: 160px;
+  right: 23px;
+  font-size: 18px;
+}
+
+.dockitem{
+  @include dock-transition;
+  border:5px solid transparent;
+  margin: 0 auto;
+  height: 136px;
+  width: 367px;
+  position: relative;
+  &.active{
+    border-color: $highlight;
+    -webkit-transform: scale(1.03);  
+  }
+}
+
+.loading:before{
+  @include pseudo(100%,100%,$dimmed);
+  top: 0;
+  left: 0;
+  z-index:100;
+}
+
+.loading:after{
+  @include sprite(187px,43px,0,-13px);
+  top: 48px;
+  left: 97px;
+  z-index:101;
+}
+
+#applist-window{
+  height: 822px;
+  padding-top: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.scrolllist { 
+  position:relative;
+}
+
+/* up down arrows */
+
+.arrow-prev, .arrow-next{ 
+  position:relative;
+  height: 25px; 
+  width: 100%;
+}
+.arrow-prev:before, .arrow-next:before{
+  top:10px;
+}
+.arrow-prev:before{
+  @include arrows(-27px,0);
+}
+.arrow-next:before{
+  @include arrows(0,0);
+}
+.no-arrow:before{
+  background-image: none!important;
+}
+
+/* app loading iframe */
+#app-embed{
+  border: 0; 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  right:0; 
+  bottom:0; 
+  width:100%; 
+  height:100%
+}

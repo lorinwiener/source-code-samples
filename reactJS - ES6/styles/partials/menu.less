@@ -1,0 +1,127 @@
+.menu-wrap {
+
+  margin: 0 50px 0 50px;
+  width: auto;
+  height: 100px;
+  opacity: 1;
+  transition: opacity 1s, transform .5s;
+
+  &.invisible {
+    opacity: 0;
+  }
+
+  .menu-underline {
+    height: 7px;
+    width: 12%;
+    background: @blueHighlightColor;
+  }
+
+  ul.menu-cont {
+    width: 100%;
+    height: 60px;
+    padding: 0;
+
+    li {
+      list-style: none;
+      font-size: @menuFontSize;
+      color: @menuInactiveFontColor;
+      width: auto;
+      display: inline-block;
+      margin-right: 30px;
+      text-decoration: none;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.grey-highlight {
+        label {
+          color: gray;
+        }
+      }
+
+      &.highlight {
+        label {
+          color: @activeMenuFontColor;
+        }
+        &.search {
+          background: url('/app/images/icon_search_white.png') no-repeat;
+          background-position: 3px 3px;
+          background-size: 85% 85%;
+        }
+        &.settings {
+          background: url('/app/images/icon_settings_white.png') no-repeat;
+          background-position: 2px 2px;
+          background-size: 87% 87%;
+        }
+      }
+
+      &.search {
+        height: 48px;
+        width: 48px;
+        background: url('/app/images/icon_search.png') no-repeat;
+        background-size: 95% 95%;
+      }
+      &.settings {
+        height: 48px;
+        width: 48px;
+        background: url('/app/images/icon_settings.png') no-repeat;
+        background-size: 95% 95%;
+      }
+
+      &:nth-child(6) {
+        animation: wave .58s @waveSpeedStyle;
+      }
+
+      &:nth-child(5) {
+        animation: wave .52s @waveSpeedStyle;
+        margin-right: 72px;
+      }
+
+      &:nth-child(4) {
+        animation: wave .48s @waveSpeedStyle;
+        margin-right: 72px;
+      }
+
+      &:nth-child(3) {
+        margin-right: 754px;
+        animation: wave .42s @waveSpeedStyle;
+      }
+
+      &:nth-child(2) {
+        animation: wave .36s @waveSpeedStyle;
+        margin-right: 120px;
+      }
+      &:nth-child(1) {
+        animation: wave .3s @waveSpeedStyle;
+        margin-right: 120px;
+      }
+      @keyframes wave {
+        from {transform: translateY(100px);}
+        to {transform: translateY(0);}
+      }
+    }
+  }
+  
+  .menu-underline {
+    height: 7px;
+    background-color: @blueHighlightColor;
+    transition: transform @menuUnderlineOnSpeed, width @menuUnderlineOnSpeed;
+
+    &.centerIn {
+      animation-name: centerin;
+      animation-duration: .3s;
+      animation-delay: .1s;
+      display: inline-block;
+    }
+
+    &.gray-highlight {
+      background-color: @menuInactiveFontColor;
+    }
+
+    @keyframes centerin {
+      from {opacity: 0; margin-left:110px; width: 1px;}
+      to {opacity: 1; margin-left:0; width: 213px;}
+    }
+  }
+}
